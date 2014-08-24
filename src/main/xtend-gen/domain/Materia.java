@@ -1,12 +1,27 @@
 package domain;
 
 import domain.Nota;
-import java.util.List;
+import java.util.ArrayList;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
 @SuppressWarnings("all")
 public class Materia {
+  public Materia() {
+    ArrayList<Nota> _arrayList = new ArrayList<Nota>();
+    this.setNotas(_arrayList);
+  }
+  
+  private String _nombre;
+  
+  public String getNombre() {
+    return this._nombre;
+  }
+  
+  public void setNombre(final String nombre) {
+    this._nombre = nombre;
+  }
+  
   private int _anio_cursada;
   
   public int getAnio_cursada() {
@@ -37,23 +52,27 @@ public class Materia {
     this._final_aprobado = final_aprobado;
   }
   
-  private String _ubicacion_materia;
+  private String _ubicacion;
   
-  public String getUbicacion_materia() {
-    return this._ubicacion_materia;
+  public String getUbicacion() {
+    return this._ubicacion;
   }
   
-  public void setUbicacion_materia(final String ubicacion_materia) {
-    this._ubicacion_materia = ubicacion_materia;
+  public void setUbicacion(final String ubicacion) {
+    this._ubicacion = ubicacion;
   }
   
-  private List<Nota> _notas;
+  private ArrayList<Nota> _notas;
   
-  public List<Nota> getNotas() {
+  public ArrayList<Nota> getNotas() {
     return this._notas;
   }
   
-  public void setNotas(final List<Nota> notas) {
+  public void setNotas(final ArrayList<Nota> notas) {
     this._notas = notas;
+  }
+  
+  public String toString() {
+    return this.getNombre();
   }
 }

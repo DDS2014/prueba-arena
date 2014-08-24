@@ -34,12 +34,18 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 		leftPanel.setLayout(new VerticalLayout)
 		new Label(leftPanel)
 			.setText("Materias")
-		new List<Materia>(leftPanel)
+		var listaMaterias = new List<Materia>(leftPanel)
+			listaMaterias.bindItemsToProperty("materiasDisponibles")
+			listaMaterias.bindValueToProperty("materiaSeleccionada")
+			
 		new Button(leftPanel)
 			.setCaption("Nueva Materia")
 		
 		rightPanel.setLayout(new VerticalLayout)
-
+		
+		new Label(rightPanel)
+			.setWidth(200)
+			.bindValueToProperty("materiaSeleccionadaName")
 		
 	}
 	
