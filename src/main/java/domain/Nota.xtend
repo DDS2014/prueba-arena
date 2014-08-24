@@ -2,7 +2,7 @@ package domain
 
 import java.util.Date
 
-class Nota 
+class Nota
 {
 	Date fecha;
 	String descripcion;

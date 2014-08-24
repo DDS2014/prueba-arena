@@ -8,4 +8,11 @@
   <groupId>G07</groupId>
   <artifactId>prueba-arena</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <dependencies>
+  	<dependency>
+  		<groupId>org.uqbar-project</groupId>
+  		<artifactId>arena-jface</artifactId>
+  		<version>3.3-SNAPSHOT</version>
+  	</dependency>
+  </dependencies>
 </project>
