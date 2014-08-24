@@ -18,13 +18,7 @@ class SeguidorDeCarrera
 	
 	@Property Materia materiaSeleccionada;
 	@Property ArrayList<Materia> materiasDisponibles;
-	@Property String materiaSeleccionadaName;
-	
-	def setMateriaSeleccionada(Materia materia)
-	{
-		this._materiaSeleccionada = materia
-		this.materiaSeleccionadaName = materia.toString()
-	}
+
 	
 	
 }

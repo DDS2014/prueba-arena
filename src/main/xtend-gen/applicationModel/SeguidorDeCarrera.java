@@ -23,6 +23,10 @@ public class SeguidorDeCarrera {
     return this._materiaSeleccionada;
   }
   
+  public void setMateriaSeleccionada(final Materia materiaSeleccionada) {
+    this._materiaSeleccionada = materiaSeleccionada;
+  }
+  
   private ArrayList<Materia> _materiasDisponibles;
   
   public ArrayList<Materia> getMateriasDisponibles() {
@@ -31,21 +35,5 @@ public class SeguidorDeCarrera {
   
   public void setMateriasDisponibles(final ArrayList<Materia> materiasDisponibles) {
     this._materiasDisponibles = materiasDisponibles;
-  }
-  
-  private String _materiaSeleccionadaName;
-  
-  public String getMateriaSeleccionadaName() {
-    return this._materiaSeleccionadaName;
-  }
-  
-  public void setMateriaSeleccionadaName(final String materiaSeleccionadaName) {
-    this._materiaSeleccionadaName = materiaSeleccionadaName;
-  }
-  
-  public void setMateriaSeleccionada(final Materia materia) {
-    this._materiaSeleccionada = materia;
-    String _string = materia.toString();
-    this.setMateriaSeleccionadaName(_string);
   }
 }

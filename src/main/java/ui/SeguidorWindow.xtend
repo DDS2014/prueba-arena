@@ -10,6 +10,10 @@ import org.uqbar.arena.layout.VerticalLayout
 import org.uqbar.arena.widgets.Label
 import org.uqbar.arena.layout.HorizontalLayout
 import org.uqbar.arena.widgets.List
+import org.uqbar.arena.widgets.TextBox
+import org.uqbar.arena.widgets.Spinner
+import org.uqbar.arena.widgets.RadioSelector
+import org.uqbar.arena.widgets.CheckBox
 
 class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 {
@@ -35,6 +39,7 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 		new Label(leftPanel)
 			.setText("Materias")
 		var listaMaterias = new List<Materia>(leftPanel)
+			listaMaterias.setHeigth(400)
 			listaMaterias.bindItemsToProperty("materiasDisponibles")
 			listaMaterias.bindValueToProperty("materiaSeleccionada")
 			
@@ -45,8 +50,30 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 		
 		new Label(rightPanel)
 			.setWidth(200)
-			.bindValueToProperty("materiaSeleccionadaName")
+			.bindValueToProperty("materiaSeleccionada.nombre")
+			
+		var row1 = new Panel(rightPanel)
+			row1.setLayout(new HorizontalLayout)
+			
+			new Label(row1).setText("Año")
+			new TextBox(row1).bindValueToProperty("materiaSeleccionada.anio_cursada")
+			
+			new CheckBox(row1).bindValueToProperty("materiaSeleccionada.final_aprobado")
+			new Label(row1).setText("Final aprobado")
 		
+		var row2 = new Panel(rightPanel)
+			row2.setLayout(new HorizontalLayout)
+			
+			new Label(row2).setText("Profesor de cursada")
+			new TextBox(row2).bindValueToProperty("materiaSeleccionada.profesor")
+			
+		var row3 = new Panel(rightPanel)
+			row3.setLayout(new HorizontalLayout)
+			
+			new Label(row3).setText("Ubicación materia")
+			new TextBox(row3).bindValueToProperty("materiaSeleccionada.ubicacion")
+			//pongo un textbox porque la verdad no veo que haya combobox en ningun lado
+			
 	}
 	
 }
