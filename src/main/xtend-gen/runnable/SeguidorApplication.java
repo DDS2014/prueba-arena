@@ -12,7 +12,8 @@ public class SeguidorApplication extends Application implements WindowOwner {
     _seguidorApplication.start();
   }
   
-  protected Window<?> createMainWindow() {
-    return new SeguidorWindow(this);
+  protected Window<? extends Object> createMainWindow() {
+    SeguidorWindow _seguidorWindow = new SeguidorWindow(this);
+    return _seguidorWindow;
   }
 }
