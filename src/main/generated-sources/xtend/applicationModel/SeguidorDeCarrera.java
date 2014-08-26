@@ -1,8 +1,10 @@
 package applicationModel;
 
 import domain.Materia;
+import domain.Nota;
 import home.HomeMaterias;
 import java.util.ArrayList;
+import java.util.Date;
 import org.uqbar.commons.utils.Observable;
 
 @Observable
@@ -35,5 +37,37 @@ public class SeguidorDeCarrera {
   
   public void setMateriasDisponibles(final ArrayList<Materia> materiasDisponibles) {
     this._materiasDisponibles = materiasDisponibles;
+  }
+  
+  private Nota _notaSeleccionada;
+  
+  public Nota getNotaSeleccionada() {
+    return this._notaSeleccionada;
+  }
+  
+  public void setNotaSeleccionada(final Nota notaSeleccionada) {
+    this._notaSeleccionada = notaSeleccionada;
+  }
+  
+  public void removerNotaSeleccionada() {
+    Materia _materiaSeleccionada = this.getMateriaSeleccionada();
+    ArrayList<Nota> _notas = _materiaSeleccionada.getNotas();
+    Nota _notaSeleccionada = this.getNotaSeleccionada();
+    _notas.remove(_notaSeleccionada);
+  }
+  
+  public boolean agregarNota() {
+    boolean _xblockexpression = false;
+    {
+      Nota notaNueva = new Nota();
+      Date _date = new Date();
+      notaNueva.setFecha(_date);
+      notaNueva.setDescripcion("TP");
+      notaNueva.setAprobado(true);
+      Materia _materiaSeleccionada = this.getMateriaSeleccionada();
+      ArrayList<Nota> _notas = _materiaSeleccionada.getNotas();
+      _xblockexpression = _notas.add(notaNueva);
+    }
+    return _xblockexpression;
   }
 }

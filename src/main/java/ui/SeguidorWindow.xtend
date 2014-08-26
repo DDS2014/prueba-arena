@@ -21,6 +21,7 @@ import org.uqbar.arena.widgets.tables.Column
 import org.uqbar.arena.layout.ColumnLayout
 import org.uqbar.arena.bindings.ObservableProperty
 import java.text.SimpleDateFormat
+import org.uqbar.arena.windows.Dialog
 
 class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 {
@@ -70,6 +71,7 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 			
 		new Button(listPanel)
 			.setCaption("Nueva Materia")
+			.onClick [ | this.agregarMateria ]
 	}
 	
 	def protected createNotasPanel(Panel panel){
@@ -82,25 +84,30 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 		table.bindItems(new ObservableProperty("materiaSeleccionada.notas"))
 		this.describeResultsGrid(table)
 		
+		
 		var botonesPanel = new Panel(notasPanel).setLayout(new ColumnLayout(3))
 		
 		new Button(botonesPanel)
 			.setCaption("Editar")
-			.setWidth(70)
+			.onClick [ | this.editarNota ]
+			
 		new Button(botonesPanel)
 			.setCaption("+")
-			.setWidth(70)
+			.onClick [ | modelObject.agregarNota]
+			
 		new Button(botonesPanel)
 			.setCaption("-")
-			.setWidth(70)
+			.onClick [| modelObject.removerNotaSeleccionada]
 	}
+	
+	
 	
 	def void describeResultsGrid(Table<Nota> table) {
 		new Column<Nota>(table)
 			.setTitle("Fecha")
 			.setFixedSize(75)
-			.bindContentsToTransformer([nota | new SimpleDateFormat("dd/MM/yyyy").format(nota.fecha)])
-
+			.bindContentsToTransformer([nota | new SimpleDateFormat("dd/MM/yyyy").format(nota.fecha)])	
+		
 		new Column<Nota>(table)
 			.setTitle("Descripción")
 			.setFixedSize(75)
@@ -110,6 +117,8 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 			.setTitle("Aprobado")
 			.setFixedSize(50)
 			.bindContentsToTransformer([nota | if (nota.aprobado) "SI" else "NO"])
+			
+		table.bindSelectionToProperty("notaSeleccionada")
 	}
 	
 	def protected createMateriaInfoPanel(Panel rightPanel){
@@ -143,4 +152,25 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 			//selector.bindValueToProperty("materiaSeleccionada.ubicacion")
 			//pongo un textbox porque la verdad no veo que haya combobox en ningun lado
 	}
+	
+	
+def void agregarMateria() {
+		this.openDialog(new NuevaMateriaWindow(this))
+	}	
+
+def void editarNota(){	
+		this.openDialog(new EditarNotaWindow(this,modelObject.notaSeleccionada))
+}
+
+def agregarNota() {
+		modelObject.materiaSeleccionada.notas.add(new Nota)
+	}
+
+
+
+def openDialog(Dialog<?> dialog) {
+	
+		dialog.open
+	}
+	
 }
