@@ -3,9 +3,10 @@ package domain
 
 import org.uqbar.commons.utils.Observable
 import java.util.ArrayList
+import org.uqbar.commons.model.Entity
 
 @Observable
-class Materia
+class Materia extends Entity
 {
 	new()
 	{

@@ -28,6 +28,7 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 	
 	new(WindowOwner parent) {
 		super(parent, new SeguidorDeCarrera)
+		modelObject.search()
 	}
 
 	

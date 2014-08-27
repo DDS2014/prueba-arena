@@ -1,31 +1,26 @@
 package home
 
-import java.util.ArrayList
+
 import domain.Materia
 import domain.Nota
 import java.util.Date
+import org.uqbar.commons.model.CollectionBasedHome
+import org.apache.commons.collections15.Predicate
+import org.uqbar.commons.utils.Observable
 
-class HomeMaterias
+@Observable
+class HomeMaterias extends CollectionBasedHome<Materia>
 {
-	ArrayList<Materia> materias;
-	ArrayList<String> ubicaciones;
+
 	
 	new()
 	{
-		this.materias = new ArrayList()
-		this.ubicaciones = new ArrayList()
 		this.init()
 	}
 	
-	def getMaterias()
-	{
-		return materias;
-	}
+
 	
-	def getubicaciones()
-	{
-		return ubicaciones;
-	}
+
 	
 	def init() 
 	{
@@ -34,12 +29,7 @@ class HomeMaterias
 		this.create("Ingeniería y Sociedad", 2011, "Gamondés", true, "2C2011")
 		this.create("Probabilidad y Estadística", 2012, "Sombielle", true, "1C2012")
 		
-		this.createUbicacion("A2011")
-		this.createUbicacion("1C2011")
-		this.createUbicacion("2C011")
-		this.createUbicacion("A2012")
-		this.createUbicacion("1C2012")
-		this.createUbicacion("2C2012")
+
 	}
 	
 	def create(String nombre, int anio_cursada, String profesor, boolean final_aprobado, String ubicacion)
@@ -58,21 +48,41 @@ class HomeMaterias
 		
 		materia.notas.add(nota)
 		
-		this.createMateria(materia)
+		this.create(materia)
 	}
+
+
 	
-	def createMateria(Materia materia)
+
+	
+	override protected Predicate <Materia> getCriterio(Materia arg0) 
 	{
-		this.materias.add(materia);
+		null
 	}
 	
-	def createUbicacion(String ubicacion){
-		this.ubicaciones.add(ubicacion);
-	}
-	
-	def Materia buscarPorNombre(String string) 
+	override createExample() 
 	{
-		this.materias.findFirst[m | m.nombre == string]
+		new Materia
+	}
+	
+	override getEntityType() 
+	{
+		typeof(Materia)
+	}
+	
+	def match(Object expectedValue, Object realValue) {
+		if (expectedValue == null) {
+			return true
+		}
+		if (realValue == null) {
+			return false
+		}
+		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
+	}
+	
+	def getAll() 
+	{
+		allInstances.toList
 	}
 	
 }

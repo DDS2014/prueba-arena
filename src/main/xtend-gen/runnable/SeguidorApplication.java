@@ -1,8 +1,11 @@
 package runnable;
 
+import domain.Materia;
+import home.HomeMaterias;
 import org.uqbar.arena.Application;
 import org.uqbar.arena.windows.Window;
 import org.uqbar.arena.windows.WindowOwner;
+import org.uqbar.commons.utils.ApplicationContext;
 import ui.SeguidorWindow;
 
 @SuppressWarnings("all")
@@ -12,8 +15,10 @@ public class SeguidorApplication extends Application implements WindowOwner {
     _seguidorApplication.start();
   }
   
-  protected Window<? extends Object> createMainWindow() {
-    SeguidorWindow _seguidorWindow = new SeguidorWindow(this);
-    return _seguidorWindow;
+  protected Window<?> createMainWindow() {
+    ApplicationContext _instance = ApplicationContext.getInstance();
+    HomeMaterias _homeMaterias = new HomeMaterias();
+    _instance.<HomeMaterias>configureSingleton(Materia.class, _homeMaterias);
+    return new SeguidorWindow(this);
   }
 }
