@@ -7,11 +7,15 @@ import org.uqbar.arena.widgets.Panel
 import org.uqbar.arena.widgets.TextBox
 import org.uqbar.arena.windows.Dialog
 import org.uqbar.arena.windows.WindowOwner
+import applicationModel.SeguidorDeCarrera
 
 class NuevaMateriaWindow extends Dialog<Materia>{
 	
-	new(WindowOwner owner) {
+	SeguidorDeCarrera seguidor;
+	
+	new(WindowOwner owner, SeguidorDeCarrera seguidor) {
 		super(owner, new Materia)
+		this.seguidor = seguidor;
 	}
 	
 	override protected createFormPanel(Panel mainPanel) {
@@ -29,10 +33,11 @@ class NuevaMateriaWindow extends Dialog<Materia>{
 			.onClick [|this.accept]
 	}
 	
-//	override executeTask() {
-//		homeMaterias.createMateria(modelObject)
-//		super.executeTask()
-//	}
+	override executeTask() {
+		seguidor.getHomeMaterias().create(modelObject)
+		super.executeTask()
+		seguidor.search()
+	}
 	
 	
 	

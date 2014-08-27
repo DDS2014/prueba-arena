@@ -20,8 +20,6 @@ class HomeMaterias extends CollectionBasedHome<Materia>
 	
 
 	
-
-	
 	def init() 
 	{
 		this.create("Análisis 1", 2011, "Gregoret", true, "A2011");
@@ -70,15 +68,6 @@ class HomeMaterias extends CollectionBasedHome<Materia>
 		typeof(Materia)
 	}
 	
-	def match(Object expectedValue, Object realValue) {
-		if (expectedValue == null) {
-			return true
-		}
-		if (realValue == null) {
-			return false
-		}
-		realValue.toString().toLowerCase().contains(expectedValue.toString().toLowerCase())
-	}
 	
 	def getAll() 
 	{

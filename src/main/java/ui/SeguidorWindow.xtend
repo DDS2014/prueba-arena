@@ -156,7 +156,7 @@ class SeguidorWindow extends SimpleWindow<SeguidorDeCarrera>
 	
 	
 def void agregarMateria() {
-		this.openDialog(new NuevaMateriaWindow(this))
+		this.openDialog(new NuevaMateriaWindow(this, modelObject))
 	}	
 
 def void editarNota(){	
